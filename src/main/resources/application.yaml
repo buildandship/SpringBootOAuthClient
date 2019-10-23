@@ -1,0 +1,27 @@
+server:
+  port: 8082
+  session:
+    cookie:
+      name:UISESSION
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          custom-client:
+            clientId: R2dpxQ3vPrtfgF72
+            clientSecret: fDw7Mpkk5czHNuSRtmhGmAGL42CaxQB9
+            clientName: Auth Server
+            clientAuthenticationMethod: basic
+            scope: user_info
+            provider: custom-provider
+            redirectUri: http://localhost:8082/login/oauth2/code/
+            authorizationGrantType: authorization_code
+        provider:
+          custom-provider:
+              authorizationUri: http://localhost:8081/auth/oauth/authorize
+              userInfoUri: http://localhost:8081/auth/user/me
+              userNameAttribute: name
+              tokenUri: http://localhost:8081/auth/oauth/token
